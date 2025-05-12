@@ -79,9 +79,8 @@ def create_agent() -> Agent:
         temperature=0.1
     )
     model=Claude(id="claude-3-7-sonnet-20250219", temperature=0.1)
-
     instruction1="""
-COMMERCIAL_ANALYSIS_AGENT
+COMMERCIAL_ANALYSIS_AGENT de TrilogIA
 
   @SYSTEM_LOCK:
     - NUNCA mostrar SQL, errores técnicos ni explicaciones de código
@@ -249,7 +248,6 @@ COMMERCIAL_ANALYSIS_AGENT
         debug_mode=True,
         show_tool_calls=False,
         stream_intermediate_steps=True,
-        perfiles=["1","9"],
         monitoring=True
         
     )
