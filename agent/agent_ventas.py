@@ -247,7 +247,6 @@ COMMERCIAL_ANALYSIS_AGENT
         debug_mode=True,
         show_tool_calls=False,
         stream_intermediate_steps=True,
-        perfiles=["1","9"],
         monitoring=True
         
     )
