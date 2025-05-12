@@ -26,7 +26,7 @@ class DataVentasTools(Toolkit):
             raise
 
     def list_schema(self):
-        """Schema Table ventasrealtime in database implementos"""
+        """Schema Table ventas """
         
         return """
         Tabla: ventas
