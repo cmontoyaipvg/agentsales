@@ -1,5 +1,6 @@
 # app/agent_setup.py
 import os
+from urllib.parse import quote_plus
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat,OpenAIResponses
 from tools.data_tools import DataVentasTools
@@ -12,7 +13,9 @@ from agno.models.anthropic import Claude
 from agno.vectordb.qdrant import Qdrant
 from openai import OpenAI 
 import requests
-db_url = "mongodb://root:yW9LPLBxAEmm@10.158.0.8:27017/ia?authSource=admin"
+password = "liderman2023%"
+encoded_password = quote_plus(password)
+db_url = f"mongodb://liderman:{encoded_password}@34.95.135.60:27017/liderman"
 storagem = MongoDbStorage(
     collection_name="agent_sessions",
     db_url=db_url,
@@ -225,15 +228,7 @@ COMMERCIAL_ANALYSIS_AGENT
     - Si falla el análisis: simplificar internamente, nunca mostrar errores al usuario
     - Siempre entregar valor, incluso si la pregunta inicial no lo contenía directamente 
  """    
-    knowledge_base = JSONKnowledgeBase(
-            vector_db=Qdrant(
-            collection="clacom",
-            url="http://qdrant.192.168.210.32.sslip.io",
-            api_key="viH7DMCIutmr2M0wKkQMHaF7VgTaLaoP",           
-        ),
-             path="")
-    
-    knowledge_base.load(recreate=False)
+
     Agente_Ventas = Agent(
         name="Especialista Comercial",
         agent_id="ventas_01",
