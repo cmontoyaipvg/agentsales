@@ -3,6 +3,7 @@ import os
 from urllib.parse import quote_plus
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat,OpenAIResponses
+from agno.storage.postgres import PostgresStorage
 from tools.data_tools import DataVentasTools
 from agno.memory.agent import AgentMemory
 from agno.memory.db.mongodb import MongoMemoryDb
@@ -13,12 +14,13 @@ from agno.models.anthropic import Claude
 from agno.vectordb.qdrant import Qdrant
 from openai import OpenAI 
 import requests
-password = "liderman2023%"
-encoded_password = quote_plus(password)
-db_url = f"mongodb://liderman:{encoded_password}@34.95.135.60:27017/liderman"
-storagem = MongoDbStorage(
-    collection_name="agent_sessions",
-    db_url=db_url,
+
+db_url = "postgresql+psycopg2://postgres:liderman2025%@34.95.135.60:5432/postgres"
+
+storage = PostgresStorage(
+    table_name="agent_sessions", 
+    db_url=db_url, 
+    auto_upgrade_schema=True
 )
 
         
@@ -243,10 +245,11 @@ COMMERCIAL_ANALYSIS_AGENT
         add_history_to_messages=True,
         num_history_responses=4,
         markdown=True,
-        storage=storagem,        
+        storage=storage,        
         debug_mode=True,
         show_tool_calls=False,
         stream_intermediate_steps=True,
+        perfiles=["1","9"],
         monitoring=True
         
     )
